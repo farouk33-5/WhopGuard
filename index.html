@@ -1,0 +1,33 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Whop Access</title>
+</head>
+<body>
+  <h2>Login with Email</h2>
+
+  <input id="email" placeholder="Enter your email" />
+
+  <button onclick="login()">Login</button>
+
+  <p id="result"></p>
+
+  <script>
+    async function login() {
+      const email = document.getElementById("email").value;
+
+      const res = await fetch("/api/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email })
+      });
+
+      const data = await res.json();
+
+      document.getElementById("result").innerText = data.message;
+    }
+  </script>
+</body>
+</html>
